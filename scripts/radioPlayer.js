@@ -5,9 +5,13 @@ export const radioPlayerInit = () => {
   const radioHeaderBig = document.querySelector('.radio-header__big');
   const radioItem = document.querySelectorAll('.radio-item');
   const radioStop = document.querySelector('.radio-stop');
+  /* const radioVolume = document.querySelector('.radio-volume');
+  const radioMute = document.querySelector('.radio-mute'); */
 
   const audio = new Audio();
   audio.type = "audio/aac";
+
+  /* let tempVolume = audio.volume; */
 
   radioStop.disabled = true;
 
@@ -55,4 +59,26 @@ export const radioPlayerInit = () => {
 
     changeIconPlay();
   });
+
+  /* radioVolume.addEventListener('input', () => {
+    audio.volume = radioVolume.value / 100;
+    
+  });
+
+  radioMute.addEventListener('click', () => {
+    
+    if (audio.volume) {
+      tempVolume = audio.volume;
+      audio.volume = 0;
+    } else {
+      audio.volume = tempVolume;
+    }
+  });
+
+  radioVolume.value = audio.volume * 100;
+
+  return () => {
+    audio.pause();
+    changeIconPlay();
+  } */
 };

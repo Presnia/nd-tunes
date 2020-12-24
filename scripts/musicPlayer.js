@@ -80,7 +80,7 @@ export const musicPlayerInit = () => {
   });
 
   audioPlayer.addEventListener('timeupdate', () => {
-    audioProgressTiming.style.width = 0 + '%';
+    audioProgressTiming.style.width = 0;
     const duration = audioPlayer.duration;
     const currentTime = audioPlayer.currentTime;
     const progress = (currentTime / duration) * 100;
