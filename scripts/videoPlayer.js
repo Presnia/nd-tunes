@@ -1,3 +1,5 @@
+import addZero from './supScript.js';
+
 export const videoPlayerInit = () => {
   const videoPlayer = document.querySelector('.video-player');
   const videoButtonPlay = document.querySelector('.video-button__play');
@@ -23,8 +25,6 @@ export const videoPlayerInit = () => {
       videoPlayer.pause();
     }
   };
-
-  const addZero = n => n < 10 ? '0' + n : n;  
 
   const stopPlay = () => {
     videoPlayer.pause();
