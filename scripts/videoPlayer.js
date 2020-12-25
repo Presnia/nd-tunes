@@ -7,6 +7,10 @@ export const videoPlayerInit = () => {
   const videoTimePassed = document.querySelector('.video-time__passed');
   const videoProgress = document.querySelector('.video-progress');
   const videoTimeTotal = document.querySelector('.video-time__total');
+  const videoVolume = document.querySelector('.video-volume');
+  const volumeDownIcon = document.querySelector('.fa-volume-down');
+  const volumeUpIcon = document.querySelector('.fa-volume-up');
+  const volumeOffIcon = document.querySelector('.fa-volume-off');
 
   const toggleIcon = () => {
     if (videoPlayer.paused) {
@@ -30,7 +34,12 @@ export const videoPlayerInit = () => {
     videoPlayer.pause();
     videoPlayer.currentTime = 0;
     toggleIcon();
-  }
+  };
+
+  const changeValue = () => {
+    const valueVolume = videoVolume.value;
+    videoPlayer.volume = valueVolume / 100;
+  };
 
   videoPlayer.addEventListener('click', togglePlay);
   videoButtonPlay.addEventListener('click', togglePlay);
@@ -61,5 +70,29 @@ export const videoPlayerInit = () => {
     const value = videoProgress.value;
 
     videoPlayer.currentTime = (value * duration) / 100;
-  })
-};
+  });
+
+  videoVolume.addEventListener('click', changeValue);
+
+  videoPlayer.addEventListener('volumechange', () => {
+    videoVolume.value = Math.round(videoPlayer.volume * 100);
+  });
+
+  changeValue();
+  console.log(videoPlayer.volume)
+
+  volumeDownIcon.addEventListener('click', () => {
+    if (videoVolume.value !== 0) {
+      videoPlayer.volume = 0;
+      videoVolume.value = 0;
+      volumeDownIcon.style.display = 'none';
+      volumeOffIcon.style.display = 'block';
+    }
+  });
+
+  volumeOffIcon.addEventListener('click', () => {
+    volumeDownIcon.style.display = 'block';
+    volumeOffIcon.style.display = 'none';
+    videoVolume.value = videoPlayer.volume * 100;
+  });
+}
